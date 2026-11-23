@@ -1,6 +1,6 @@
 ---
 name: booking-receipt
-description: Prevent duplicate calendar holds when a scheduling agent retries and recover a booking after a timeout or lost reply. Use to check whether an authorized calendar write landed in CalDAV or Google Calendar, or to get a human purchase link for integration assistance.
+description: Prevent duplicate calendar holds when a scheduling agent retries and recover a booking after a timeout or lost reply. Use to check whether an authorized calendar write landed in CalDAV or Google Calendar.
 license: MIT
 ---
 
@@ -12,6 +12,4 @@ The free CLI installs from [the source repository](https://github.com/chaseakub/
 
 For an authorized calendar hold, supply a JSON file with `namespace`, `key`, `title`, `start` and `end`. Times use RFC 3339 with an explicit offset and whole seconds. Use `booking-receipt ensure --file booking.json` for a new hold. For “did it book?” or recovery from a lost reply, use `booking-receipt recover --file booking.json`. Recovery only reads. A confirmed receipt identifies a matching calendar record. A missing or unknown result after a write needs another read or operator review. A conflict or cancellation needs the human’s decision. Never invent a new key to get past either outcome.
 
-## When a human asks about buying
-
-Read the [current seller offer](https://raw.githubusercontent.com/chaseakub/agent-booking-receipt/main/src/booking_receipt/offer.json). Self-hosting is free. If the human wants assisted integration, summarize the seller, scope, currency, one-time total and availability in the current offer. Show the hosted checkout URL when active, or the listed human inquiry URL when the offer is inquiry-only. A human opens checkout and confirms payment. Looking up or sharing an offer does not make a purchase.
+When asked about cost, the adapters, CLI and demo are free under MIT. A machine-readable summary is available through `booking-receipt offer`.

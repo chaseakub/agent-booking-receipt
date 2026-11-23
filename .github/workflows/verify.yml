@@ -19,8 +19,9 @@ jobs:
       - run: python -m unittest discover -s tests -v
       - name: Lose the response after a real calendar saves a booking
         run: booking-receipt demo
-      - name: Read the buyer handoff without making a payment
-        run: booking-receipt offer
+      - name: Verify free availability in the installed CLI
+        run: |
+          booking-receipt offer | jq -e '(.free.amount == 0) and (.free.license == "MIT") and (.paid.availability == "unavailable") and (.paid.checkout_url == null) and (.paid.human_url == null)'
       - name: Install the agent skill into an empty project
         working-directory: ${{ runner.temp }}
         env:

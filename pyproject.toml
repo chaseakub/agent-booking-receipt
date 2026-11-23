@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "agent-booking-receipt"
-version = "0.1.0"
+version = "0.1.1"
 description = "Recover the receipt for a calendar booking after an agent loses the response."
 readme = "README.md"
 requires-python = ">=3.10"

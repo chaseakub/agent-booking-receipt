@@ -2,14 +2,14 @@
 
 **Did the calendar save the booking before the agent timed out?** Booking Receipt gives a calendar hold a stable ID. A restarted agent can read the calendar, recover the original receipt, and leave the existing event alone. Free, MIT licensed, and usable without a hosted account.
 
-[Run the public verification](https://github.com/chaseakub/agent-booking-receipt/actions/workflows/verify.yml) · [Instructions for agents](skills/booking-receipt/SKILL.md) · [Assisted pilot](#assisted-pilot)
+[Run the public verification](https://github.com/chaseakub/agent-booking-receipt/actions/workflows/verify.yml) · [Instructions for agents](skills/booking-receipt/SKILL.md) · [Using it regularly?](#using-it-regularly)
 
 ## Try the failure in one command
 
 With [uv](https://github.com/astral-sh/uv) installed, run:
 
 ```sh
-uvx --from 'agent-booking-receipt[demo] @ git+https://github.com/chaseakub/agent-booking-receipt.git@v0.1.0' booking-receipt demo
+uvx --from 'agent-booking-receipt[demo] @ git+https://github.com/chaseakub/agent-booking-receipt.git@v0.1.1' booking-receipt demo
 ```
 
 The demo starts an isolated Radicale calendar on loopback and creates a hold. It drops the HTTP reply after the server commits and makes the first confirmation read unavailable. A fresh process recovers the event. A third process repeats the original request. The demo independently lists the calendar and checks that it contains one event and that only one create request reached the server. The calendar and test credentials are removed on exit.
@@ -20,10 +20,10 @@ The demo starts an isolated Radicale calendar on loopback and creates a hold. It
 npx skills add chaseakub/agent-booking-receipt --skill booking-receipt
 ```
 
-The skill explains when to look up an uncertain result, when it is appropriate to create a hold, and how to pass a buying decision to a human. To install the CLI with Python 3.10 or newer:
+The skill helps an agent decide whether to create a hold or check an uncertain result. Install the CLI with Python 3.10 or newer.
 
 ```sh
-uv tool install 'git+https://github.com/chaseakub/agent-booking-receipt.git@v0.1.0'
+uv tool install 'git+https://github.com/chaseakub/agent-booking-receipt.git@v0.1.1'
 ```
 
 ## Use your calendar
@@ -50,11 +50,13 @@ booking-receipt recover --file booking.json
 
 CalDAV creation uses a deterministic resource URL and `If-None-Match: *`. Google creation uses a client-assigned event ID and a private request fingerprint. Google documents limits to collision detection across distributed writes. A receipt confirms that the original request marker exists. People may edit the event after creation. A CalDAV server may remove deleted objects without retaining tombstones. Use `recover` after an uncertain write, including when a later deletion is possible. This version creates single timed calendar holds with no attendees. It does not reserve availability, reschedule meetings or deliver invitations. [Google Calendar event IDs](https://developers.google.com/workspace/calendar/api/guides/create-events) · [CalDAV](https://www.rfc-editor.org/rfc/rfc4791)
 
-## Assisted pilot
+<a id="assisted-pilot"></a>
 
-Self-hosting includes the adapters, command-line recovery, and reproducible failure demo. Teams can ask Replio about an assisted sandbox integration and a written recovery report. [Ask about the pilot](mailto:chase@repliohq.com?subject=Booking%20Receipt%20pilot).
+## Using it regularly?
 
-Agents can read the [current commercial offer](https://raw.githubusercontent.com/chaseakub/agent-booking-receipt/main/src/booking_receipt/offer.json) without installing anything. `booking-receipt offer` returns the offer bundled with the installed version. Check the current offer before handing a purchase to a human. The buyer reviews the seller, scope and amount before paying.
+Booking Receipt is free under the MIT license. If you personally rely on it for recurring bookings, tell us what it handles and how often. A sentence is enough. Sharing is optional.
+
+[Share recurring use on GitHub](https://github.com/chaseakub/agent-booking-receipt/issues/new?template=recurring-use.yml) · [Tell Replio privately](mailto:chase@repliohq.com?subject=How%20I%20use%20Booking%20Receipt)
 
 ## Design precedents
 

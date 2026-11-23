@@ -25,7 +25,7 @@ def main(argv=None):
         cmd = commands.add_parser(verb)
         cmd.add_argument("--file", required=True, help="Booking JSON file, or - to read stdin.")
     commands.add_parser("demo", help="Run the lost-response demo on a temporary local Radicale calendar.")
-    commands.add_parser("offer", help="Return the human purchase handoff as JSON.")
+    commands.add_parser("offer", help="Show the license, price and availability as JSON.")
     args = parser.parse_args(argv)
     try:
         if args.action == "offer":

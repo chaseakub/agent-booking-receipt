@@ -1,0 +1,19 @@
+name: Share recurring use
+description: Tell us about a real workflow where you personally rely on Booking Receipt.
+title: "Recurring use in "
+labels: ["recurring-use"]
+body:
+  - type: textarea
+    id: workflow
+    attributes:
+      label: What do you use Booking Receipt for, and how often?
+      description: A sentence is enough. This report is public. Please leave out names of customers, calendar IDs, and event details.
+    validations:
+      required: true
+  - type: checkboxes
+    id: recurring
+    attributes:
+      label: Recurring use
+      options:
+        - label: I personally rely on Booking Receipt in a real workflow and have used it more than once.
+          required: true
