@@ -1,0 +1,24 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "agent-booking-receipt"
+version = "0.1.0"
+description = "Recover the receipt for a calendar booking after an agent loses the response."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+dependencies = ["requests>=2.32.4,<3", "icalendar>=7,<8"]
+
+[project.optional-dependencies]
+demo = ["Radicale==3.9.2"]
+
+[project.scripts]
+booking-receipt = "booking_receipt.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/booking_receipt"]
+
+[project.urls]
+Source = "https://github.com/chaseakub/agent-booking-receipt"

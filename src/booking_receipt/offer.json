@@ -1,0 +1,16 @@
+{
+  "product": "Booking Receipt",
+  "seller": "Replio",
+  "free": {"license": "MIT", "amount": 0, "currency": "USD", "includes": "Self-hosted calendar adapters, recovery CLI and reproducible demo"},
+  "paid": {
+    "name": "Assisted integration pilot",
+    "includes": ["One assisted calendar integration in a customer sandbox", "A written report on recovery after a lost booking response"],
+    "availability": "inquiry_only",
+    "amount_minor": null,
+    "currency": "USD",
+    "billing": "one_time",
+    "checkout_url": null,
+    "human_url": "https://github.com/chaseakub/agent-booking-receipt#assisted-pilot",
+    "purchaser": "human"
+  }
+}
